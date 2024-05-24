@@ -19,14 +19,7 @@ wifi-access-http-port=7222
 wifi-access-socks5-port=7221
 
 [Proxy]
-🇭🇰 hk = vmess,freeyx.cloudflare88.eu.org,2086,chacha20-ietf-poly1305,"0d8cb38f-14f1-4d8c-beb9-5f69ae9d24c2",over-tls=false,transport=ws,path=/,host=ui.on99.xyz,skip-cert-verify=true
-🇯🇵 jp = vmess,yx.887141.xyz,2086,chacha20-ietf-poly1305,"56d09184-e0ba-4e7c-85c1-de7e99512501",over-tls=false,transport=ws,path=/,host=hk66.on99.xyz,skip-cert-verify=true
-🇺🇸 us = vmess,yx.887141.xyz,2086,chacha20-ietf-poly1305,"52760e0c-28cd-44ee-b8ba-dd5abf8a4b46",over-tls=false,transport=ws,path=/,host=us66.on99.xyz,skip-cert-verify=true
-🇸🇬 电信-sg = vmess,203.3.115.223,26813,chacha20-ietf-poly1305,"4e280695-14d2-4ca9-c49a-256e9615c67f",over-tls=true,tls-name=,transport=ws,path=/,host=,skip-cert-verify=true
-🇯🇵 jp-gpt = vmess,4.215.226.79,34820,chacha20-ietf-poly1305,"0c370c51-9891-422d-b6f7-ae72e5643c3c",over-tls=true,tls-name=,transport=ws,path=/,host=,skip-cert-verify=true
-🇸🇬 sg = vmess,sg.on99.xyz,26813,chacha20-ietf-poly1305,"4e280695-14d2-4ca9-c49a-256e9615c67f",over-tls=true,tls-name=sg.on99.xyz,transport=ws,path=/,host=sg.on99.xyz,skip-cert-verify=true
-🇺🇸 us直连 = vmess,us.on99.xyz,13444,chacha20-ietf-poly1305,"966747b0-1040-45d5-91ec-7799fca48c09",over-tls=true,tls-name=us.on99.xyz,transport=ws,path=/,host=us.on99.xyz,skip-cert-verify=true
-🇭🇰 电信hk = vmess,203.3.115.223,13689,chacha20-ietf-poly1305,"897542ab-3b91-4a64-a54a-8c5ffa672306",over-tls=true,tls-name=,transport=ws,path=/,host=,skip-cert-verify=true
+
 
 [Remote Proxy]
 
