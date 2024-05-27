@@ -1,0 +1,100 @@
+# Shadowrocket: 2024-05-27 13:34:15
+[General]
+loglevel = notify
+bypass-system = true
+skip-proxy = 127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,100.64.0.0/10,localhost,*.local,e.crashlytics.com,captive.apple.com,::ffff:0:0:0:0/1,::ffff:128:0:0:0/1
+#DNS设置或根据自己网络情况进行相应设置
+bypass-tun = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12
+dns-server = 119.29.29.29,223.5.5.5,218.30.19.40,61.134.1.4
+external-controller-access = password@0.0.0.0:6170
+http-api = password@0.0.0.0:6171
+test-timeout = 5
+http-api-web-dashboard = true
+exclude-simple-hostnames = true
+allow-wifi-access = true
+http-listen = 0.0.0.0:6152
+socks5-listen = 0.0.0.0:6153
+wifi-access-http-port = 6152
+wifi-access-socks5-port = 6153
+
+
+[Proxy]
+
+
+[Proxy Group]
+🚀 节点选择 = select,🚀 手动切换,PROXY,policy-select-name=PROXY
+🚀 手动切换 = select
+📲 电报消息 = select,🚀 节点选择,🚀 手动切换,PROXY,policy-select-name=🚀 节点选择
+💬 OpenAi = select,🚀 节点选择,🚀 手动切换,PROXY,policy-select-name=🚀 节点选择
+📹 油管视频 = select,🚀 节点选择,🚀 手动切换,PROXY,policy-select-name=🚀 节点选择
+🎥 奈飞视频 = select,🚀 节点选择,🚀 手动切换,PROXY,policy-select-name=🚀 节点选择
+📺 巴哈姆特 = select,🚀 节点选择,🚀 手动切换,PROXY,policy-select-name=🚀 节点选择
+📺 哔哩哔哩 = select,🎯 全球直连,PROXY,policy-select-name=🎯 全球直连
+🌍 国外媒体 = select,🚀 节点选择,🚀 手动切换,PROXY,policy-select-name=🚀 节点选择
+🌏 国内媒体 = select,DIRECT,policy-select-name=DIRECT
+📢 谷歌FCM = select,DIRECT,PROXY,🚀 节点选择,🚀 手动切换,policy-select-name=DIRECT
+Ⓜ️ 微软Bing = select,🚀 手动切换,🚀 节点选择,DIRECT,policy-select-name=SG
+Ⓜ️ 微软云盘 = select,🚀 手动切换,🚀 节点选择,DIRECT,policy-select-name=SG
+Ⓜ️ 微软服务 = select,🚀 手动切换,🚀 节点选择,DIRECT,policy-select-name=SG
+🍎 苹果服务 = select,DIRECT,🚀 节点选择,🚀 手动切换,policy-select-name=DIRECT
+🎮 游戏平台 = select,DIRECT,🚀 节点选择,🚀 手动切换,policy-select-name=DIRECT
+🎶 网易音乐 = select,DIRECT,🚀 节点选择
+🎯 全球直连 = select,DIRECT,policy-select-name=DIRECT
+🛑 广告拦截 = select,REJECT,policy-select-name=REJECT
+🍃 应用净化 = select,REJECT,policy-select-name=REJECT
+🛡️ 隐私防护 = select,REJECT,policy-select-name=REJECT
+🐟 漏网之鱼 = select,🚀 节点选择,PROXY,policy-select-name=🚀 节点选择
+
+[Rule]
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list,🎯 全球直连,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list,🎯 全球直连,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list,🛑 广告拦截,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list,🍃 应用净化,update-interval=86400
+https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyList.list,🆎 AdBlock
+https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyListChina.list,🆎 AdBlock
+https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanEasyPrivacy.list,🛡️ 隐私防护
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/GoogleFCM.list,📢 谷歌FCM,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/GoogleCN.list,🎯 全球直连,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/SteamCN.list,🎯 全球直连,update-interval=86400
+RULE-SET,https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/WeChat/WeChat.list,DIRECT
+RULE-SET,https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Google/Google.list,PROXY
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list,Ⓜ️ 微软BING,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list,Ⓜ️ 微软云盘,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list,Ⓜ️ 微软服务,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list,🍎 苹果服务,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Telegram.list,📲 电报消息,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list,💬 OPENAI,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/NetEaseMusic.list,🎶 网易音乐,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Epic.list,🎮 游戏平台,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Origin.list,🎮 游戏平台,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Sony.list,🎮 游戏平台,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Steam.list,🎮 游戏平台,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Nintendo.list,🎮 游戏平台,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/YouTube.list,📹 油管视频,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Netflix.list,🎥 奈飞视频,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bahamut.list,📺 巴哈姆特,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/BilibiliHMT.list,📺 哔哩哔哩,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/Bilibili.list,📺 哔哩哔哩,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list,🌏 国内媒体,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyMedia.list,🌍 国外媒体,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ProxyGFWlist.list,🚀 节点选择,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list,🎯 全球直连,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list,🎯 全球直连,update-interval=86400
+RULE-SET,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Download.list,🎯 全球直连,update-interval=86400
+GEOIP,CN,🎯 全球直连
+FINAL,🐟 漏网之鱼
+
+[URL Rewrite]
+^https?://(www.)?g.cn https://www.google.com 302
+^https?://(www.)?google.cn https://www.google.com 302
+
+[Script]
+百度搜索 = type=http-response,script-path=https://gitlab.com/lodepuly/vpn_tool/-/raw/master/Resource/Script/BaiduSearch/BaiduSearchHomePage_remove_ads.js,pattern=^https?:\/\/(www|m)\.baidu\.com\/?($|\?from=\w{8,9}),requires-body=true
+spotify-json = type=http-request,type=http-request,pattern=^https:\/\/spclient\.wg\.spotify\.com\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/,requires-body=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-json.js
+spotify-proto = type=http-response,pattern=^https:\/\/spclient\.wg\.spotify\.com\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$,requires-body=1,binary-mode=1,max-size=0,script-path=https://raw.githubusercontent.com/app2smile/rules/master/js/spotify-proto.js,script-update-interval=0
+
+[MITM]
+ca-passphrase = Shadowrocket
+ca-p12 = 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
+enable = true
+hostname = %APPEND% spclient.wg.spotify.com, m.baidu.com, www.baidu.com
