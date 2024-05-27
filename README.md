@@ -1,2 +1,2 @@
 # ClashRule
-ClashRule
+自用
