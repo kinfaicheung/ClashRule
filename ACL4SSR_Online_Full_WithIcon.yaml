@@ -1,6 +1,7 @@
 proxy-groups:
   - name: 节点选择
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png
+    include-all: true
     type: select
     proxies:
       - DIRECT
@@ -11,6 +12,7 @@ proxy-groups:
     proxies:
   - name: 电报消息
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png
+    include-all: true
     type: select
     proxies:
       - 节点选择
@@ -135,13 +137,6 @@ proxy-groups:
       - 节点选择
       - DIRECT
       - 手动切换
-  
- 
-  - name: 奈飞节点
-    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png
-    include-all: true
-    filter: (?i)NF|奈飞|解锁|Netflix|NETFLIX|Media
-    type: select
   - name: GLOBAL
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Global.png
     include-all: true
