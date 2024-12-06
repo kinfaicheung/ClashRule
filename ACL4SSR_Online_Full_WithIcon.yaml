@@ -48,8 +48,6 @@ proxy-groups:
     type: select
     proxies:
       - 全球直连
-      - 台湾节点
-      - 香港节点
   - name: 国外媒体
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png
     type: select
@@ -109,7 +107,6 @@ proxy-groups:
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netease_Music.png
     type: select
     include-all: true
-    filter: (?i)网易|音乐|NetEase|Music
     proxies:
       - DIRECT
       - 节点选择
