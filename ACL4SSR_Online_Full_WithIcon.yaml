@@ -19,6 +19,7 @@ proxy-groups:
       - DIRECT
   - name: OpenAi
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png
+    include-all: true
     type: select
     proxies:
       - 节点选择
@@ -26,6 +27,7 @@ proxy-groups:
       - DIRECT
   - name: 油管视频
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png
+    include-all: true
     type: select
     proxies:
       - 节点选择
@@ -33,12 +35,14 @@ proxy-groups:
       - DIRECT
   - name: 奈飞视频
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png
+    include-all: true
     type: select
     proxies:
       - 节点选择
       - DIRECT
   - name: 巴哈姆特
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bahamut.png
+    include-all: true
     type: select
     proxies:
       - 节点选择
@@ -46,11 +50,13 @@ proxy-groups:
       - DIRECT
   - name: 哔哩哔哩
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png
+    include-all: true
     type: select
     proxies:
       - 全球直连
   - name: 国外媒体
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png
+    include-all: true
     type: select
     proxies:
       - 节点选择
@@ -58,12 +64,14 @@ proxy-groups:
       - DIRECT
   - name: 国内媒体
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/DomesticMedia.png
+    include-all: true
     type: select
     proxies:
       - DIRECT
       - 手动切换
   - name: 谷歌FCM
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png
+    include-all: true
     type: select
     proxies:
       - DIRECT
@@ -71,6 +79,7 @@ proxy-groups:
       - 手动切换
   - name: 微软Bing
     icon: https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/bing.png
+    include-all: true
     type: select
     proxies:
       - DIRECT
@@ -78,6 +87,7 @@ proxy-groups:
       - 手动切换
   - name: 微软云盘
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/OneDrive.png
+    include-all: true
     type: select
     proxies:
       - DIRECT
@@ -85,6 +95,7 @@ proxy-groups:
       - 手动切换
   - name: 微软服务
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Microsoft.png
+    include-all: true
     type: select
     proxies:
       - 节点选择
@@ -92,6 +103,7 @@ proxy-groups:
       - 手动切换
   - name: 苹果服务
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png
+    include-all: true
     type: select
     proxies:
       - DIRECT
@@ -99,6 +111,7 @@ proxy-groups:
       - 手动切换
   - name: 游戏平台
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Game.png
+    include-all: true
     type: select
     proxies:
       - DIRECT
