@@ -286,6 +286,7 @@ proxy-groups:
     include-all: true
     type: select
     proxies:
+      - 自动选择
   - name: 手动切换
     icon: https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/select.png
     include-all: true
