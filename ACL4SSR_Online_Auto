@@ -291,7 +291,7 @@ proxy-groups:
     include-all: true
     type: select
     proxies:
-   - name: 自动选择
+  - name: 自动选择
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Auto.png
     type: url-test
     include-all: true
