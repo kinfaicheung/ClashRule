@@ -291,12 +291,12 @@ proxy-groups:
     include-all: true
     type: select
     proxies:
-- name: ♻️ 自动选择
+   - name: 自动选择
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Auto.png
     type: url-test
-    url: http://www.gstatic.com/generate_204
+    include-all: true
     interval: 300
     tolerance: 50
-    include-all: true
   - name: 电报消息
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png
     include-all: true
