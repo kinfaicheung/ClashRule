@@ -649,6 +649,12 @@ rule-providers:
     interval: 86400
     format: text
     type: http
+  cn_domain:
+    behavior: domain
+    format: mrs
+    interval: 86400
+    type: http
+    url: https://github.com/666OS/YYDS/raw/main/mihomo/rules/cn.mrs  
   ChinaDomain:
     url: https://mirror.ghproxy.com/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
     path: ./ruleset/ChinaDomain.list
