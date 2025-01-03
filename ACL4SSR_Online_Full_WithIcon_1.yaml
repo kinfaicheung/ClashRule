@@ -649,6 +649,13 @@ rule-providers:
     interval: 86400
     format: text
     type: http
+
+  private_domain:
+    behavior: domain
+    format: mrs
+    interval: 86400
+    type: http
+    url: https://github.com/666OS/YYDS/raw/main/mihomo/rules/private.mrs  
   cn_domain:
     behavior: domain
     format: mrs
