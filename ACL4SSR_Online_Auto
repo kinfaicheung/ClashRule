@@ -320,7 +320,7 @@ proxy-groups:
       - 韩国节点
       - 自动选择
       - DIRECT
-  - name: OpenAi
+  - name: Ai
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png
     type: select
     proxies:
