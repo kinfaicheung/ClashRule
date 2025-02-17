@@ -640,7 +640,7 @@ rule-providers:
     type: http
   Ai:
     url: https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/rule/AI.list
-    path: ./ruleset/OpenAi.list
+    path: ./ruleset/Ai.list
     behavior: classical
     interval: 86400
     format: text
