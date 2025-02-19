@@ -545,7 +545,7 @@ rule-providers:
     format: text
     type: http
   OpenAi:
-    url: https://ghfast.top/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Ruleset/OpenAi.list
+    url: https://ghfast.top/https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/rule/AI.list
     path: ./ruleset/OpenAi.list
     behavior: classical
     interval: 86400
