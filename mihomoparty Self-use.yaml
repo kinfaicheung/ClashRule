@@ -86,4 +86,4 @@ rules:
   - RULE-SET,Lan,DIRECT
   - RULE-SET,Download,DIRECT
   - GEOIP,CN,DIRECT
-  - MATCH,兜底分流
+  - MATCH,节点选择
