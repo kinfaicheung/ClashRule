@@ -18,6 +18,9 @@ proxy-groups:
   - {name: 手动切换, type: select, include-all: true, icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png }
   - {name: 全球加速, type: select, proxies: [手动切换, DIRECT, 自动选择, 香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点], icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png }
   - {name: 苹果服务, type: select, proxies: [DIRECT, 手动切换, 自动选择, 香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点], icon: https://ghfast.top/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png }
+  - {name: 微软Bing, type: select, proxies: [DIRECT, 手动切换, 自动选择, 香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点], icon: https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/bing.png }
+  - {name: 微软云盘, type: select, proxies: [手动切换, DIRECT, 自动选择, 香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点], icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/OneDrive.png }
+  - {name: 微软服务, type: select, proxies: [DIRECT, 手动切换, 自动选择, 香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点], icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Microsoft.png }
   - {name: 哔哩哔哩, type: select, proxies: [DIRECT, 香港节点, 台湾节点], icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/bilibili.png }
   - {name: Emby服务, type: select, proxies: [手动切换, DIRECT, 自动选择, 香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点], icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Emby.png }
   - {name: OpenAi,   type: select, proxies: [美国节点, 手动切换], icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png }
@@ -47,6 +50,8 @@ rule-providers:
   GlobalMedia: {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia_Classical.yaml ,  path: ./ruleset/GlobalMedia.yaml  }
   Apple:       {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple_Classical.yaml ,              path: ./ruleset/Apple.yaml        }
   Github:      {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml ,                      path: ./ruleset/Github.yaml       }
+  Bing:        {behavior: classical, interval: 86400, format: text, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list ,                                                 path: ./ruleset/Bing.list         }
+  OneDrive:    {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list ,                                             path: ./ruleset/OneDrive.list     }
   Microsoft:   {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.yaml ,                path: ./ruleset/Microsoft.yaml    }
   Google:      {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.yaml ,                      path: ./ruleset/Google.yaml       }
   Telegram:    {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml ,                  path: ./ruleset/Telegram.yaml     }
@@ -68,7 +73,9 @@ rules:
   - RULE-SET,GlobalMedia,国际媒体
   - RULE-SET,Apple,苹果服务
   - RULE-SET,Github,全球加速
-  - RULE-SET,Microsoft,全球加速
+  - RULE-SET,Bing,微软Bing
+  - RULE-SET,OneDrive,微软云盘
+  - RULE-SET,Microsoft,微软服务
   - RULE-SET,Google,谷歌服务
   - RULE-SET,Telegram,电报消息
   - RULE-SET,Twitter,全球加速
