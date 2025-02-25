@@ -1,0 +1,181 @@
+
+### 全局配置
+mixed-port: 7897
+allow-lan: true
+mode: rule
+log-level: warning
+ipv6: false
+find-process-mode: strict
+### 如果使用的是裸核，需要将下面的注释去掉，方便ui界面的使用
+# external-controller: 0.0.0.0:9988
+# external-ui: ui
+# external-ui-url: 'https://mirror.ghproxy.com/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip'
+# secret: "yyhhyyyyyy"
+profile:
+  store-selected: true
+  store-fake-ip: true
+unified-delay: true
+tcp-concurrent: true
+global-client-fingerprint: chrome
+
+### DNS配置
+dns:
+  enable: true
+  prefer-h3: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  # fake-ip-filter start
+  fake-ip-filter:                        # fake-ip 过滤规则
+    - "*.lan"                            # 局域网域名
+    - "*.local"                          # 本地域名
+    - "*.localhost"                      # 本地主机
+    - "*.arpa"                           # 反向 DNS 查询
+    - "time.windows.com"                 # Windows 时间同步
+    - "time.apple.com"                   # Apple 时间同步
+    - "time.google.com"                  # Google 时间同步
+    - "*.ntp.org"                        # NTP 服务
+    - "dns.msftncsi.com"                 # Microsoft 网络检测
+    - "www.msftncsi.com"                 # Microsoft 网络检测
+    - "*.qq.com"                         # 腾讯服务（避免 fake-ip 影响）
+    - "*.wechat.com"                     # 微信服务
+    - "*.taobao.com"                     # 淘宝服务
+  # fake-ip-filter end
+  respect-rules: true
+  # nameserver:
+  #  - https://223.5.5.5/dns-query
+  #  - https://doh.pub/dns-query
+  # proxy-server-nameserver:
+  #  - https://223.5.5.5/dns-query
+  # - https://doh.pub/dns-query
+  default-nameserver:                   # 默认 DNS 服务器（用于解析域名，未匹配规则时使用）
+    - 8.8.8.8                          # Google DNS
+    - 1.1.1.1                          # Cloudflare DNS
+  nameserver:                           # 主 DNS 服务器，走代理解析
+    - https://dns.google/dns-query      # Google DoH
+    - https://cloudflare-dns.com/dns-query  # Cloudflare DoH
+  proxy-server-nameserver:              # 通过代理解析的 DNS 服务器
+    - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query
+  nameserver-policy:                    # DNS 分流策略
+    "geosite:cn":                       # 中国域名使用国内 DNS
+      - 223.5.5.5                      # 阿里 DNS
+      - 114.114.114.114                # 114 DNS
+    "geosite:geolocation-!cn":          # 非中国域名走国际 DNS
+      - https://dns.google/dns-query
+      - https://cloudflare-dns.com/dns-query
+
+### 域名嗅探
+sniffer:
+  enable: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+  skip-domain:
+    - "Mijia Cloud"
+    - "+.push.apple.com"
+
+### Tunnel配置
+tun:
+  enable: true
+  stack: system
+  device: Ethernet 99
+  auto-route: true
+  auto-detect-interface: true
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  strict-route: true
+  mtu: 1500
+  # 如果有使用zerotier或者headscale等，需要自己配置排除自己的网段
+  # route-exclude-address: ["192.168.110.0/24"]
+
+proxy-groups:
+#分流分组
+  - {name: 节点选择, type: select, proxies: [手动切换, 香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点, 其他节点, DIRECT], icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png }
+  - {name: 手动切换, type: select, include-all: true, icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Static.png }
+  - {name: 苹果服务, type: select, proxies: [DIRECT, 手动切换, 香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点, 其他节点], icon: https://ghfast.top/https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple.png }
+  - {name: 微软Bing, type: select, proxies: [DIRECT, 手动切换, 香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点, 其他节点], icon: https://fastly.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/bing.png }
+  - {name: 微软云盘, type: select, proxies: [手动切换, DIRECT, 香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点, 其他节点], icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/OneDrive.png }
+  - {name: 微软服务, type: select, proxies: [DIRECT, 手动切换, 香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点, 其他节点], icon: https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Microsoft.png }
+  - {name: 哔哩哔哩, type: select, proxies: [DIRECT, 香港节点, 台湾节点, 其他节点], icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/bilibili.png }
+  - {name: Emby服务, type: select, proxies: [手动切换, DIRECT,  香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点, 其他节点], icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Emby.png }
+  - {name: OpenAi,   type: select, proxies: [节点选择, 手动切换, 香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点, 其他节点], icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png }
+  - {name: 国际媒体, type: select, proxies: [节点选择, 手动切换, DIRECT, 香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点, 其他节点], icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Streaming.png }
+  - {name: 谷歌服务, type: select, proxies: [节点选择, 手动切换, DIRECT, 香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点, 其他节点], icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Google.png }
+  - {name: 电报消息, type: select, proxies: [节点选择, 手动切换, DIRECT, 香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点, 其他节点], icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Telegram.png }
+  - {name: 推特服务, type: select, proxies: [节点选择, 手动切换, DIRECT, 香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点, 其他节点], icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Twitter.png }
+  - {name: 游戏平台, type: select, proxies: [DIRECT, 手动切换, 香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点, 其他节点], icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/GAME.png }
+  - {name: AdBlock,  type: select, proxies: [REJECT, DIRECT], icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Adblock.png }
+  #- {name: 兜底分流, type: select, proxies: [节点选择, 手动切换, DIRECT,  香港节点, 日本节点, 台湾节点, 美国节点, 狮城节点], icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Final.png }
+  
+#节点分组
+  #- {name: 自动选择, type: url-test, include-all: true, interval: 600, tolerance: 50,  icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Urltest.png }
+  - {name: 香港节点, type: url-test, include-all: true, interval: 600, tolerance: 50,  filter: "港|HK|(?i)Hong Kong|HKG", icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png }             
+  - {name: 日本节点, type: url-test, include-all: true, interval: 600, tolerance: 50,  filter: "日|东京|大阪|JP|(?i)Japan", icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png }
+  - {name: 台湾节点, type: url-test, include-all: true, interval: 600, tolerance: 50,  filter: "台|湾|TW|(?i)Taiwan", icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/TW.png }
+  - {name: 美国节点, type: url-test, include-all: true, interval: 600, tolerance: 50,  filter: "美|US|USA|(?i)United States|(?i)America", icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png }
+  - {name: 狮城节点, type: url-test, include-all: true, interval: 600, tolerance: 50,  filter: "新|坡|SG|(?i)Singapore", icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/SG.png }
+  - {name: 其他节点, type: url-test, include-all: true, interval: 600, tolerance: 50,  exclude-filter: "港|HK|(?i)Hong|日|东京|JP|(?i)Japan|台|湾|TW|(?i)Taiwan|美|US|(?i)States|新|坡|SG|(?i)Singapore", icon: https://ghfast.top/https://raw.githubusercontent.com/Orz-3/mini/master/Color/Vpn.png }
+
+# 分流规则 
+rule-providers:
+  AdBlock:     {behavior: domain,    interval: 86400, format: text, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_domainset.txt ,                                           path: ./ruleset/anti-ad-clash.txt }
+  OpenAi:      {behavior: domain,    interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-chat-!cn.yaml ,         path: ./ruleset/OpenAi.yaml       }
+  Emby:        {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/ddgksf2013/Filter/master/Emby.yaml ,                                                     path: ./ruleset/Emby.yaml         }
+  BiliBili:    {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili.yaml ,                  path: ./ruleset/BiliBili.yaml     }
+  Bahamut:     {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Bahamut/Bahamut.yaml ,                    path: ./ruleset/Bahamut.yaml      } 
+  GlobalMedia: {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia_Classical.yaml ,  path: ./ruleset/GlobalMedia.yaml  }
+  Apple:       {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple_Classical.yaml ,              path: ./ruleset/Apple.yaml        }
+  Github:      {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml ,                      path: ./ruleset/Github.yaml       }
+  Bing:        {behavior: classical, interval: 86400, format: text, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Bing.list ,                                                 path: ./ruleset/Bing.list         }
+  OneDrive:    {behavior: classical, interval: 86400, format: text, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/OneDrive.list ,                                             path: ./ruleset/OneDrive.list     }
+  Microsoft:   {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.yaml ,                path: ./ruleset/Microsoft.yaml    }
+  Google:      {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.yaml ,                      path: ./ruleset/Google.yaml       }
+  Telegram:    {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml ,                  path: ./ruleset/Telegram.yaml     }
+  Twitter:     {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.yaml ,                    path: ./ruleset/Twitter.yaml      }
+  Game:        {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/Game.yaml ,                          path: ./ruleset/Game.yaml         }
+  ProxyLite:   {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ProxyLite/ProxyLite.yaml ,                path: ./ruleset/ProxyLite.yaml    }
+  Direct:      {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Direct/Direct.yaml ,                      path: ./ruleset/Direct.yaml       }
+  Lan:         {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.yaml ,                            path: ./ruleset/Lan.yaml          }
+  Download:    {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Download/Download.yaml ,                  path: ./ruleset/Download.yaml     }
+  ChinaIP:     {behavior: ipcidr,    interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/soffchen/GeoIP2-CN/release/clash-rule-provider.yml ,                                     path: ./ruleset/ChinaIP.yaml      }
+
+# 分流Policy 
+rules:
+  #- PROCESS-NAME-REGEX,obs64.exe,节点选择
+  - PROCESS-NAME,obs64.exe,节点选择
+  - PROCESS-NAME,OUTLOOK.EXE,DIRECT
+  - RULE-SET,AdBlock,AdBlock
+  - RULE-SET,OpenAi,OpenAi
+  - RULE-SET,Emby,Emby服务
+  - RULE-SET,BiliBili,哔哩哔哩
+  - RULE-SET,Bahamut,哔哩哔哩
+  - RULE-SET,GlobalMedia,国际媒体
+  - RULE-SET,Apple,苹果服务
+  - RULE-SET,Github,节点选择
+  - RULE-SET,Bing,微软Bing
+  - RULE-SET,OneDrive,微软云盘
+  - RULE-SET,Microsoft,微软服务
+  - RULE-SET,Google,谷歌服务
+  - RULE-SET,Telegram,电报消息
+  - RULE-SET,Twitter,节点选择
+  - RULE-SET,Game,游戏平台
+  - RULE-SET,ProxyLite,节点选择
+  - RULE-SET,ChinaIP,DIRECT
+  - RULE-SET,Direct,DIRECT
+  - RULE-SET,Lan,DIRECT
+  - RULE-SET,Download,DIRECT
+  - GEOIP,CN,DIRECT
+  # DNS 防泄漏规则
+  - DOMAIN,localhost,DIRECT
+  - DOMAIN-SUFFIX,local,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  # 默认规则
+  - MATCH,节点选择
