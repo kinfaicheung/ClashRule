@@ -15,6 +15,7 @@ const enable = true
  * 遵循“最小，可用”原则，可禁用不需要的规则以提高效率
  */
 const ruleOptions = {
+  github: true,     //github
   apple: true,      // 苹果服务
   microsoft: true,  // 微软服务
   google: true,     // Google服务
@@ -235,6 +236,18 @@ function main(config) {
     })
   }
 
+  if (ruleOptions.github) {
+    rules.push('GEOSITE,github,github')
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: 'github',
+      type: 'select',
+      proxies: ['默认节点', ...proxyGroupsRegionNames, 'DIRECT'],
+      url: 'https://www.youtube.com/s/desktop/494dd881/img/favicon.ico',
+      icon: 'https://images.icon-icons.com/1826/PNG/512/4202098codedevelopergithublogo-115590_115711.png',
+    })
+  }
+
   if (ruleOptions.biliintl) {
     rules.push('GEOSITE,biliintl,哔哩哔哩东南亚')
     config['proxy-groups'].push({
@@ -315,7 +328,7 @@ function main(config) {
       type: 'select',
       proxies: ['默认节点', ...proxyGroupsRegionNames, 'DIRECT'],
       url: 'https://www.pixiv.net/favicon.ico',
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Pig.png',
+      icon: 'https://play-lh.googleusercontent.com/8pFuLOHF62ADcN0ISUAyEueA5G8IF49mX_6Az6pQNtokNVHxIVbS1L2NM62H-k02rLM=w240-h480-rw',
     })
   }
 
@@ -414,28 +427,6 @@ function main(config) {
     })
   }
 
-  if (ruleOptions.tracker) {
-    rules.push('GEOSITE,tracker,跟踪分析')
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: '跟踪分析',
-      type: 'select',
-      proxies: ['REJECT', 'DIRECT', '默认节点'],
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Reject.png',
-    })
-  }
-
-  if (ruleOptions.ads) {
-    rules.push('GEOSITE,category-ads-all,广告过滤')
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: '广告过滤',
-      type: 'select',
-      proxies: ['REJECT', 'DIRECT', '默认节点'],
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Advertising.png',
-    })
-  }
-
   if (ruleOptions.apple) {
     rules.push('GEOSITE,apple-cn,苹果服务')
     config['proxy-groups'].push({
@@ -488,6 +479,28 @@ function main(config) {
       proxies: ['默认节点', ...proxyGroupsRegionNames, 'DIRECT'],
       url: 'https://r.r10s.jp/com/img/home/logo/touch.png',
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/JP.png',
+    })
+  }
+  
+  if (ruleOptions.tracker) {
+    rules.push('GEOSITE,tracker,跟踪分析')
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: '跟踪分析',
+      type: 'select',
+      proxies: ['REJECT', 'DIRECT', '默认节点'],
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Reject.png',
+    })
+  }
+
+  if (ruleOptions.ads) {
+    rules.push('GEOSITE,category-ads-all,广告过滤')
+    config['proxy-groups'].push({
+      ...groupBaseOption,
+      name: '广告过滤',
+      type: 'select',
+      proxies: ['REJECT', 'DIRECT', '默认节点'],
+      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Advertising.png',
     })
   }
 
