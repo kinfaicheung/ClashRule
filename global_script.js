@@ -48,17 +48,17 @@ const ruleOptions = {
 const regionOptions = {
   excludeHighPercentage: true,
   regions: [
-    { name: 'HK香港', regex: /港|🇭🇰|hk|hongkong|hong kong/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png' },
-    { name: 'US美国', regex: /美|🇺🇸|us|united state|america/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png' },
-    { name: 'JP日本', regex: /日本|🇯🇵|jp|japan/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png' },
-    { name: 'KR韩国', regex: /韩|🇰🇷|kr|korea/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Korea.png' },
-    { name: 'SG新加坡', regex: /新加坡|🇸🇬|sg|singapore/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png' },
-    { name: 'CN中国大陆', regex: /中国|🇨🇳|cn|china/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China_Map.png' },
-    { name: 'TW台湾省', regex: /台湾|🇹🇼|tw|taiwan|tai wan/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China.png' },
-    { name: 'GB英国', regex: /英|🇬🇧|uk|united kingdom|great britain/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_Kingdom.png' },
-    { name: 'DE德国', regex: /德国|🇩🇪|de|germany/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png' },
-    { name: 'MY马来西亚', regex: /马来|🇲🇾|my|malaysia/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png' },
-    { name: 'TK土耳其', regex: /土耳其|🇹🇷|tk|turkey/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Turkey.png' },
+    { name: '🇭🇰香港', regex: /港|🇭🇰|hk|hongkong|hong kong/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Hong_Kong.png' },
+    { name: '🇺🇸美国', regex: /美|🇺🇸|us|united state|america/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_States.png' },
+    { name: '🇯🇵日本', regex: /日本|🇯🇵|jp|japan/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Japan.png' },
+    { name: '🇰🇷韩国', regex: /韩|🇰🇷|kr|korea/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Korea.png' },
+    { name: '🇸🇬新加坡', regex: /新加坡|🇸🇬|sg|singapore/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Singapore.png' },
+    { name: '🇨🇳中国大陆', regex: /中国|🇨🇳|cn|china/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China_Map.png' },
+    { name: '🇹🇼台湾省', regex: /台湾|🇹🇼|tw|taiwan|tai wan/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/China.png' },
+    { name: '🇬🇧英国', regex: /英|🇬🇧|uk|united kingdom|great britain/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/United_Kingdom.png' },
+    { name: '🇩🇪德国', regex: /德国|🇩🇪|de|germany/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png' },
+    { name: '🇲🇾马来西亚', regex: /马来|🇲🇾|my|malaysia/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png' },
+    { name: '🇹🇷土耳其', regex: /土耳其|🇹🇷|tk|turkey/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Turkey.png' },
   ],
 }
 
