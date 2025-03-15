@@ -190,7 +190,7 @@ function main(config) {
   })
 
   const proxyGroupsRegionNames = regionProxyGroups.map((value) => value.name)
-  if (otherProxyGroups.length > 0) proxyGroupsRegionNames.push('其他节点')
+  if (otherProxyGroups.length > 0) proxyGroupsRegionNames.push('🌎其他节点')
 
   config['proxy-groups'] = [{
     ...groupBaseOption,
@@ -543,7 +543,7 @@ function main(config) {
   if (otherProxyGroups.length > 0) {
     config['proxy-groups'].push({
       ...groupBaseOption,
-      name: '其他节点',
+      name: '🌎其他节点',
       type: 'select',
       proxies: otherProxyGroups,
       icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/World_Map.png',
