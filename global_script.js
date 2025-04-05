@@ -59,6 +59,8 @@ const regionOptions = {
     { name: '🇩🇪德国', regex: /德国|🇩🇪|de|germany/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Germany.png' },
     { name: '🇲🇾马来西亚', regex: /马来|🇲🇾|my|malaysia/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Malaysia.png' },
     { name: '🇹🇷土耳其', regex: /土耳其|🇹🇷|tk|turkey/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Turkey.png' },
+    { name: '🇹🇭泰国', regex: /泰|🇹🇭|th|thailand/i, ratioLimit: 2, icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Thailand.png' },
+    { name: '🇳🇱荷兰', regex: /荷兰|🇳🇱|nl|netherlands/i, ratioLimit: 2, icon: 'https://raw.githubusercontent.com/yammadev/flag-icons/refs/heads/master/png/NL%402x.png' },
   ],
 }
 
