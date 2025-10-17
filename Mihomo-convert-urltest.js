@@ -23,7 +23,7 @@ function buildBaseLists({ landing, lowCost, countryInfo }) {
         .filter(item => item.count > 2)
         .map(item => item.country + "节点");
 
-    // defaultSelector (选择节点 组里展示的候选) 
+    // defaultSelector (选择节点 组里展示的候选)
     // 故障转移, 落地节点(可选), 各地区节点, 低倍率节点(可选), 手动选择, DIRECT
     const selector = ["故障转移"]; // 把 fallback 放在最前
     if (landing) selector.push("落地节点");
@@ -31,7 +31,7 @@ function buildBaseLists({ landing, lowCost, countryInfo }) {
     if (lowCost) selector.push("低倍率节点");
     selector.push("手动选择", "DIRECT");
 
-    // defaultProxies (各分类策略引用) 
+    // defaultProxies (各分类策略引用)
     // 选择节点, 各地区节点, 低倍率节点(可选), 手动选择, 直连
     const defaultProxies = ["选择节点", ...countryGroupNames];
     if (lowCost) defaultProxies.push("低倍率节点");
@@ -345,10 +345,11 @@ function hasLowCost(config) {
 
 function parseCountries(config) {
     const proxies = config.proxies || [];
-    const ispRegex = /家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地/i;   // 需要排除的关键字
+    const ispRegex = /家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地/i; // 需要排除的关键字
 
     // 用来累计各国节点数
     const countryCounts = Object.create(null);
+    let unmatchedCount = 0;
 
     // 构建地区正则表达式，去掉 (?i) 前缀
     const compiledRegex = {};
@@ -362,6 +363,7 @@ function parseCountries(config) {
     // 逐个节点进行匹配与统计
     for (const proxy of proxies) {
         const name = proxy.name || '';
+        let matched = false;
 
         // 过滤掉不想统计的 ISP 节点
         if (ispRegex.test(name)) continue;
@@ -370,8 +372,13 @@ function parseCountries(config) {
         for (const [country, regex] of Object.entries(compiledRegex)) {
             if (regex.test(name)) {
                 countryCounts[country] = (countryCounts[country] || 0) + 1;
-                break;    // 避免一个节点同时累计到多个地区
+                matched = true;
+                break; // 避免一个节点同时累计到多个地区
             }
+        }
+
+        if (!matched) {
+            unmatchedCount++;
         }
     }
 
@@ -381,18 +388,44 @@ function parseCountries(config) {
         result.push({ country, count });
     }
 
-    return result;   // [{ country: 'Japan', count: 12 }, ...]
+    if (unmatchedCount > 0) {
+        result.push({ country: '其他', count: unmatchedCount });
+    }
+
+    return result; // [{ country: 'Japan', count: 12 }, ...]
 }
 
 
 function buildCountryProxyGroups(countryList) {
     // 获取实际存在的地区列表
     const countryProxyGroups = [];
+    
+    // 构建一个包含所有国家/地区正则表达式的字符串，用于“其他”节点的排除
+    const allCountriesPattern = Object.values(countriesMeta)
+        .map(meta => meta.pattern.replace(/^\(\?i\)/, '')) // 移除 (?i)
+        .join('|');
 
     // 为实际存在的地区创建节点组
     for (const country of countryList) {
-        // 确保地区名称在预设的地区配置中存在
-        if (countriesMeta[country]) {
+        if (country === '其他') {
+            const groupConfig = {
+                "name": "其他节点",
+                "icon": "https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/World_Map.png",
+                "include-all": true,
+                "exclude-filter": `(?i)(${allCountriesPattern})|${landing ? "家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地|0\\.[0-5]|低倍率|省流|大流量|实验性" : "0\\.[0-5]|低倍率|省流|大流量|实验性"}`,
+                "type": (loadBalance) ? "load-balance" : "url-test",
+            };
+            if (!loadBalance) {
+                Object.assign(groupConfig, {
+                    "url": "https://cp.cloudflare.com/generate_204",
+                    "interval": 60,
+                    "tolerance": 20,
+                    "lazy": false
+                });
+            }
+            countryProxyGroups.push(groupConfig);
+
+        } else if (countriesMeta[country]) {
             const groupName = `${country}节点`;
             const pattern = countriesMeta[country].pattern;
 
@@ -401,7 +434,7 @@ function buildCountryProxyGroups(countryList) {
                 "icon": countriesMeta[country].icon,
                 "include-all": true,
                 "filter": pattern,
-                "exclude-filter": landing ? "(?i)家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地|0\.[0-5]|低倍率|省流|大流量|实验性" : "0\.[0-5]|低倍率|省流|大流量|实验性",
+                "exclude-filter": landing ? "(?i)家宽|家庭|家庭宽带|商宽|商业宽带|星链|Starlink|落地|0\\.[0-5]|低倍率|省流|大流量|实验性" : "0\\.[0-5]|低倍率|省流|大流量|实验性",
                 "type": (loadBalance) ? "load-balance" : "url-test",
             };
 
@@ -591,7 +624,7 @@ function buildProxyGroups({
             "type": "url-test",
             "url": "https://cp.cloudflare.com/generate_204",
             "include-all": true,
-            "filter": "(?i)0\.[0-5]|低倍率|省流|大流量|实验性"
+            "filter": "(?i)0\\.[0-5]|低倍率|省流|大流量|实验性"
         } : null,
         ...countryProxyGroups
     ].filter(Boolean); // 过滤掉 null 值
@@ -669,4 +702,3 @@ function main(config) {
 
     return config;
 }
-高速下载
