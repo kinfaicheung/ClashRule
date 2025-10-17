@@ -323,17 +323,6 @@ const countriesMeta = {
 };
 
 
-  if (otherProxyGroups.length > 0) {
-    config['proxy-groups'].push({
-      ...groupBaseOption,
-      name: '其他节点',
-      type: 'select',
-      proxies: otherProxyGroups,
-      icon: 'https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/World_Map.png',
-    })
-  }
-
-
 function parseBool(value) {
     if (typeof value === "boolean") return value;
     if (typeof value === "string") {
