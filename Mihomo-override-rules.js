@@ -20,7 +20,7 @@ const loadBalance = parseBool(inArg.loadbalance) || false,
 
 function buildBaseLists({ landing, lowCost, countryInfo }) {
     const countryGroupNames = countryInfo
-        .filter(item => item.count > 2)
+        .filter(item => item.count > 0)
         .map(item => item.country + "节点");
 
     // defaultSelector (选择节点 组里展示的候选)
