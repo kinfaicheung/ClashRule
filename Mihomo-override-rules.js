@@ -488,7 +488,7 @@ function buildProxyGroups({
             "type": "fallback",
             "url": "https://cp.cloudflare.com/generate_204",
             "proxies": defaultFallback,
-            "interval": 180,
+            "interval": 14400,
             "tolerance": 20,
             "lazy": false
         },
