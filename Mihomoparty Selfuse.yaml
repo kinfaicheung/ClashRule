@@ -125,6 +125,24 @@ proxy-groups:
 
 # 分流规则 
 rule-providers:
+  LocalAreaNetwork:
+    type: http
+    behavior: classical
+    url: https://api.dler.io/getruleset?type=6&url=cnVsZXMvQUNMNFNTUi9DbGFzaC9Mb2NhbEFyZWFOZXR3b3JrLmxpc3Q
+    path: ./providers/8402706212293704900.yaml
+    interval: 86400
+  BanAD:
+    type: http
+    behavior: classical
+    url: https://api.dler.io/getruleset?type=6&url=cnVsZXMvQUNMNFNTUi9DbGFzaC9CYW5BRC5saXN0
+    path: ./providers/2929890640486968208.yaml
+    interval: 86400
+  BanProgramAD:
+    type: http
+    behavior: classical
+    url: https://api.dler.io/getruleset?type=6&url=cnVsZXMvQUNMNFNTUi9DbGFzaC9CYW5Qcm9ncmFtQUQubGlzdA
+    path: ./providers/13100800048415605598.yaml
+    interval: 86400
   AdBlock:     {behavior: domain,    interval: 86400, format: text, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/Cats-Team/AdRules/main/adrules_domainset.txt ,                                           path: ./ruleset/anti-ad-clash.txt }
   OpenAi:      {behavior: domain,    interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/category-ai-chat-!cn.yaml ,         path: ./ruleset/OpenAi.yaml       }
   Emby:        {behavior: classical, interval: 86400, format: yaml, type: http, url: https://ghfast.top/https://raw.githubusercontent.com/ddgksf2013/Filter/master/Emby.yaml ,                                                     path: ./ruleset/Emby.yaml         }
@@ -149,8 +167,11 @@ rule-providers:
 # 分流Policy 
 rules:
   #- PROCESS-NAME-REGEX,obs64.exe,节点选择
-  - PROCESS-NAME,obs64.exe,节点选择
-  - PROCESS-NAME,OUTLOOK.EXE,DIRECT
+  #- PROCESS-NAME,obs64.exe,节点选择
+  #- PROCESS-NAME,OUTLOOK.EXE,DIRECT
+  - RULE-SET,LocalAreaNetwork,DIRECT
+  - RULE-SET,BanAD,AdBlock
+  - RULE-SET,BanProgramAD,AdBlock
   - RULE-SET,AdBlock,AdBlock
   - RULE-SET,OpenAi,OpenAi
   - RULE-SET,Emby,Emby服务
